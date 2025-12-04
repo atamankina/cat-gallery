@@ -39,9 +39,10 @@ jobs:
                 fi
 
                 echo "✅ Alle einfachen Tests bestanden."
-                
+
     build:
         runs-on: ubuntu-latest
+        needs: test
 
         steps:
             - name: Checkout repository
