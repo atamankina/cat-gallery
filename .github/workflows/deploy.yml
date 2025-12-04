@@ -66,6 +66,9 @@ jobs:
               id: deploy
               uses: actions/deploy-pages@v4
 
+        outputs:
+          page_url: ${{ steps.deploy.outputs.page_url }}
+
     verify:
       name: Verify GitHub Pages Deployment
       runs-on: ubuntu-latest
@@ -76,7 +79,7 @@ jobs:
           run: |
             set -e
 
-            URL="${{ env.GITHUB_PAGES_URL }}"
+            URL="${{ needs.deploy.outputs.page_url }}""
             echo "🔎 Prüfe URL: $URL"
 
             # Mehrere Versuche, weil GitHub Pages manchmal ein paar Sekunden braucht
