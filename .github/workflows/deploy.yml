@@ -11,6 +11,35 @@ permissions:
     id-token: write
 
 jobs:
+    test:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Unit tests - check components
+              run: |
+                set -e
+
+                echo "🔎 Prüfe, ob index.html existiert..."
+                test -f index.html
+
+                echo "🔎 Prüfe, ob styles.css existiert..."
+                test -f styles.css
+            
+            - name: Unit tests - check contents
+              run: |
+                set -e
+
+                echo "🔎 Prüfe, ob 'Cute Cat Gallery' in index.html vorkommt..."
+                if ! grep -qi "Cute Cat Gallery" index.html; then
+                    echo "❌ Titel 'Cute Cat Gallery' nicht gefunden!"
+                    exit 1
+                fi
+
+                echo "✅ Alle einfachen Tests bestanden."
+                
     build:
         runs-on: ubuntu-latest
 
