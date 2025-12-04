@@ -79,7 +79,7 @@ jobs:
           run: |
             set -e
 
-            URL="${{ needs.deploy.outputs.page_url }}""
+            URL="${{ needs.deploy.outputs.page_url }}"
             echo "🔎 Prüfe URL: $URL"
 
             # Mehrere Versuche, weil GitHub Pages manchmal ein paar Sekunden braucht
