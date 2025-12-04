@@ -70,13 +70,15 @@ jobs:
       name: Verify GitHub Pages Deployment
       runs-on: ubuntu-latest
       needs: deploy
+      env:
+        PAGE_URL: "https://atamankina.github.io/cat-gallery/"
 
       steps:
         - name: Integration tests
           run: |
             set -e
 
-            URL="${{ needs.deploy.outputs.page_url }}"
+            URL="$PAGE_URL"
             echo "🔎 Prüfe URL: $URL"
 
             # Mehrere Versuche, weil GitHub Pages manchmal ein paar Sekunden braucht
